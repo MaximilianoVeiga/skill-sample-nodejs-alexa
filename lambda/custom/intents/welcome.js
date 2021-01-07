@@ -6,7 +6,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = welcomeResponses.messages['WELCOME_MSG'];
+        const speakOutput = welcomeResponses.WELCOME_MSG();
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -21,7 +21,7 @@ const HelloWorldIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
     },
     handle(handlerInput) {
-        const speakOutput = welcomeResponses.messages['HELLO_MSG'];
+        const speakOutput = welcomeResponses.HELLO_MSG();
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -36,7 +36,7 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = welcomeResponses.messages['HELP_MSG'];
+        const speakOutput = welcomeResponses.HELP_MSG();
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -52,7 +52,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = welcomeResponses.messages['GOODBYE_MSG'];
+        const speakOutput = welcomeResponses.GOODBYE_MSG();
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -70,7 +70,7 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = welcomeResponses.messages['FALLBACK_MSG'];
+        const speakOutput = welcomeResponses.FALLBACK_MSG();
 
         return handlerInput.responseBuilder
             .speak(speakOutput)

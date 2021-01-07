@@ -48,7 +48,7 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = welcomeResponses.messages['ERROR_MSG'];
+        const speakOutput = welcomeResponses.ERROR_MSG();
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
         return handlerInput.responseBuilder
