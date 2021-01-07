@@ -4,6 +4,8 @@ const s3SigV4Client = new AWS.S3({
     signatureVersion: 'v4'
 });
 
+const ddbAdapter = require('ask-sdk-dynamodb-persistence-adapter'); 
+
 function getS3PreSignedUrl(s3ObjectKey) {
     const bucketName = process.env.S3_PERSISTENCE_BUCKET;
     const s3PreSignedUrl = s3SigV4Client.getSignedUrl('getObject', {

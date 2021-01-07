@@ -7,13 +7,17 @@ const Alexa = require('ask-sdk-core');
 // import .env config
 require('dotenv/config');
 // import intents from /intents/index.js
-const intentHandler = require('./intents/index');
+const { welcomeIntents } = require('./intents/index');
 // instantiate dynamodb persistence adapter
 const ddbAdapter = require('ask-sdk-dynamodb-persistence-adapter'); 
 // import util
-const util = require('../util');
+const util = require('./util');
 // iniciate persistenceAdapter
 const persistenceAdapter = util.getPersistenceAdapter();
+// require welcome messages
+const welcomeResponses = require('./responses/welcome');
+
+console.log(welcomeIntents);
 
 const LoadAttributesRequestInterceptor = {
     async process(handlerInput) {
@@ -46,7 +50,7 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = handlerInput.t('ERROR_MSG');
+        const speakOutput = welcomeResponses.messages['ERROR_MSG'];
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
         return handlerInput.responseBuilder
@@ -63,12 +67,12 @@ const ErrorHandler = {
  * */
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
-        intentHandler.LaunchRequestHandler,
-        intentHandler.HelloWorldIntentHandler,
-        intentHandler.HelpIntentHandler,
-        intentHandler.CancelAndStopIntentHandler,
-        intentHandler.FallbackIntentHandler,
-        intentHandler.SessionEndedRequestHandler)
+        welcomeIntents.LaunchRequestHandler,
+        welcomeIntents.HelloWorldIntentHandler,
+        welcomeIntents.HelpIntentHandler,
+        welcomeIntents.CancelAndStopIntentHandler,
+        welcomeIntents.FallbackIntentHandler,
+        welcomeIntents.SessionEndedRequestHandler)
     .addErrorHandlers(
         ErrorHandler)
     .addRequestInterceptors(
