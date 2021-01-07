@@ -17,8 +17,6 @@ const persistenceAdapter = util.getPersistenceAdapter();
 // require welcome messages
 const welcomeResponses = require('./responses/welcome');
 
-console.log(welcomeIntents);
-
 const LoadAttributesRequestInterceptor = {
     async process(handlerInput) {
         const persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
