@@ -10,14 +10,10 @@ require('dotenv/config');
 const intentHandler = require('./intents/index');
 // instantiate dynamodb persistence adapter
 const ddbAdapter = require('ask-sdk-dynamodb-persistence-adapter'); 
+// import util
+const util = require('../util');
 // iniciate persistenceAdapter
-const persistenceAdapter = getPersistenceAdapter();
-
-function getPersistenceAdapter() {
-    return new ddbAdapter.DynamoDbPersistenceAdapter({
-        tableName: process.env.DYNAMODB_PERSISTENCE_TABLE_NAME
-    });
-}
+const persistenceAdapter = util.getPersistenceAdapter();
 
 const LoadAttributesRequestInterceptor = {
     async process(handlerInput) {
